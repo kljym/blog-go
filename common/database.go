@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"go-gin-gorm/model"
-	"net/url"
 )
 
 // DB /* common/database.go */
@@ -19,15 +18,13 @@ func InitDB() *gorm.DB {
 	port := "3306"
 	database := "blog"
 	charset := "utf8"
-	loc := "Asia/Zhejiang"
 	args := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=%s&parseTime=true",
 		user,
 		password,
 		host,
 		port,
 		database,
-		charset,
-		url.QueryEscape(loc))
+		charset)
 	// 连接数据库
 	db, err := gorm.Open(driverName, args)
 	if err != nil {
